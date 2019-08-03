@@ -1099,23 +1099,6 @@ func BenchmarkMiniBufferWriteBytes(b *testing.B) {
 
 }
 
-func BenchmarkMiniBufferReadBytes(b *testing.B) {
-
-	b.ReportAllocs()
-
-	buf := &MiniBuffer{}
-	NewMiniBuffer(&buf, []byte{0x00, 0x00, 0x00, 0x00})
-
-	out := []byte{}
-
-	for n := 0; n < b.N; n++ {
-
-		buf.ReadBytes(&out, 0x00, 2)
-
-	}
-
-}
-
 func BenchmarkMiniBufferWriteU32LE(b *testing.B) {
 
 	b.ReportAllocs()
@@ -1149,24 +1132,6 @@ func BenchmarkMiniBufferReadU32LE(b *testing.B) {
 
 }
 
-func BenchmarkMiniBufferReadBit(b *testing.B) {
-
-	b.ReportAllocs()
-
-	buf := &MiniBuffer{}
-	NewMiniBuffer(&buf, []byte{0x00, 0x00, 0x00, 0x00})
-
-	var out byte
-	for n := 0; n < b.N; n++ {
-
-		buf.ReadBit(&out, 0x00)
-
-	}
-
-	_ = out
-
-}
-
 func BenchmarkMiniBufferReadBits(b *testing.B) {
 
 	b.ReportAllocs()
@@ -1185,32 +1150,3 @@ func BenchmarkMiniBufferReadBits(b *testing.B) {
 
 }
 
-func BenchmarkMiniBufferSetBit(b *testing.B) {
-
-	b.ReportAllocs()
-
-	buf := &MiniBuffer{}
-	NewMiniBuffer(&buf, []byte{0x00, 0x00, 0x00, 0x00})
-
-	for n := 0; n < b.N; n++ {
-
-		buf.SetBit(0x00)
-
-	}
-
-}
-
-func BenchmarkMiniBufferClearBit(b *testing.B) {
-
-	b.ReportAllocs()
-
-	buf := &MiniBuffer{}
-	NewMiniBuffer(&buf, []byte{0x00, 0x00, 0x00, 0x00})
-
-	for n := 0; n < b.N; n++ {
-
-		buf.ClearBit(0x00)
-
-	}
-
-}
